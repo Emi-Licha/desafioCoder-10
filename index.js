@@ -8,7 +8,16 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'));
 const router = express.Router();
 app.use('/api', router);
+const handlebars = require('express-handlebars');
+app.engine('hbs',handlebars({
+    extname:'.hbs',
+    defaultLayout:'index.hbs',
+    layoutsDir:__dirname+'/views/layouts',
+    partialsDir:__dirname+'/views/partials'
+}))
+app.use(express.static('public'));
 let productos = []
+
 
 router.get('/productos/listar', (req, res) => {
 
@@ -23,6 +32,19 @@ router.get('/productos/listar', (req, res) => {
     read(ruta);
 
 });
+
+router.get('/productos/vista', (req, res) => {
+    
+    if (productos.length == 0){
+        
+        
+        res.render('index', {productos, listExist:false})
+        console.log(productos)
+    }
+    
+    else{
+    res.render('index', {productos, listExist:true})}
+})
 
 router.post('/productos', (req, res) => {
     let { name, price, thumbnail} = req.body
@@ -73,6 +95,9 @@ router.put('/productos/:id', (req,res)=>{
     producto.precio = price
     res.sendStatus(204)
 })
+
+app.set('views','./views/layouts')
+app.set('view engine','hbs')
 
 app.listen(puerto, ()=>{
     console.log(`El servidor esta escuchando en puerto ${puerto}`)

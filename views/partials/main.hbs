@@ -1,0 +1,18 @@
+<h1>Lista de productos</h1>
+
+
+    {{#if listExist}}
+    
+    
+    {{#each productos}}
+    <tr>
+    <th scope="row">{{this.id}}</th>
+    <td >{{this.name}}</td>
+    <td >{{this.price}}</td>
+    <td >{{this.thumbnail}}</td>
+    </tr>
+    {{/each}}
+    {{else}}
+    <th style="color: blue; position:absolute; padding-left:40%">No existe ningun producto disponible</th>
+
+{{/if}}

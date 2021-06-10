@@ -1,7 +1,13 @@
 [
   {
     "id": 1,
-    "name": "Macbook",
+    "name": "Apple",
+    "price": "20.30",
+    "thumbnail": "link"
+  },
+  {
+    "id": 2,
+    "name": "Apple",
     "price": "20.30",
     "thumbnail": "link"
   }
