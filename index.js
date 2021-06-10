@@ -38,12 +38,12 @@ router.get('/productos/vista', (req, res) => {
     if (productos.length == 0){
         
         
-        res.render('index', {productos, listExist:false})
+        res.render('main', {productos, listExist:false})
         console.log(productos)
     }
     
     else{
-    res.render('index', {productos, listExist:true})}
+    res.render('main', {productos, listExist:true})}
 })
 
 router.post('/productos', (req, res) => {
@@ -96,7 +96,7 @@ router.put('/productos/:id', (req,res)=>{
     res.sendStatus(204)
 })
 
-app.set('views','./views/layouts')
+app.set('views','./views/partials')
 app.set('view engine','hbs')
 
 app.listen(puerto, ()=>{
